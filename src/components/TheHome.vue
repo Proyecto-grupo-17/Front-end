@@ -6,14 +6,14 @@
         <button
           class="btn btn-outline-info my-2 my-sm-0"
           type="submit"
-          @click.prevent="logoutUser">
-          salir
+          @click.prevent="logOutUser"
+          > salir
         </button>
       </form>
     </nav>
     <ul class="list-group">
-      <li class="list-group-item"><span>Name: </span> {{ user.nombre }}</li>
-      <li class="list-group-item"><span>Email: </span> {{ user.email }}</li>
+      <li class="list-group-item"><span>Nombre: </span>{{ user.nombre }}</li>
+      <li class="list-group-item"><span>Email: </span>{{ user.email }}</li>
     </ul>
   </div>
 </template>
@@ -22,23 +22,23 @@
 export default {
   data() {
     return {
-      user: {},
-    };
+      user: {}
+    }
   },
-  methos: {
+  methods: {
     logOutUser() {
-      localStorage.removeItem("jwt");
-      localStorage.removeItem("user");
-      this.$router.push("/");
+      localStorage.removeItem('jwt');
+      localStorage.removeItem('user');
+      this.$router.push('/');
     },
     getUserData() {
-      let token = localStorage.getItem("jwt");
-      let user = localStorage.getItem("user");
-      this.user = JSON.parce(user);
-    },
+      let token = localStorage.getItem('jwt');
+      let user = localStorage.getItem('user');
+      this.user = JSON.parse(user);
+    }
   },
-  created() {
+  created () {
     this.getUserData();
   },
-};
+}
 </script>

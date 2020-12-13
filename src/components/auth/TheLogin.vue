@@ -50,7 +50,7 @@ export default {
       try {
         // console.log(this.login);
         let response = await this.$http.post('/api/usuario/login', this.login);
-        console.login(response.data);
+        console.log(response.data);
         let token = response.data.tokenReturn;
         let user = response.data.user;
 
