@@ -8,7 +8,7 @@
         id="exampleInputEmail1"
         aria-describedby="emailHelp"
         v-model="login.email"
-      />
+      >
       <small id="emailHelp" class="form-text text-muted"
         >We'll never share your email with anyone else.</small
       >
@@ -20,12 +20,15 @@
         class="form-control"
         id="exampleInputPassword1"
         v-model="login.password"
-      />
+      >
     </div>
     <pre>
         {{ login }}
     </pre>
-    <button type="submit" class="btn btn-primary" @click.prevent="loginUser">
+    <button 
+    type="submit" 
+    class="btn btn-primary" 
+    @click.prevent="loginUser">
       Sign In
     </button>
   </form>
@@ -37,28 +40,28 @@ export default {
   data() {
     return {
       login: {
-        email: "",
-        password: "",
+        email: '',
+        password: '',
       },
     };
   },
   methods: {
     async loginUser() {
       try {
-        //console.log(this.login);
+        // console.log(this.login);
         let response = await this.$http.post('/api/usuario/login', this.login);
         console.login(response.data);
         let token = response.data.tokenReturn;
         let user = response.data.user;
 
         localStorage.setItem('jwt', token);
-        localStorage.setItem('user',JSON.stringify(user))
+        localStorage.setItem('user',JSON.stringify(user));
         if (token){
-          swal("Login correcto", "Los datos son correctos", "seccess");
-          this.$router.push('/home');
+            swal("Login correcto", `Los datos son correctos, bienvenido! ${user.nombre} `, "seccess");
+            this.$router.push('/home');
         }
       } catch (e) {
-        //console.log(error);
+        // console.log(e);
         swal("Oops!","Algo salio mal", "error");
       }
     },

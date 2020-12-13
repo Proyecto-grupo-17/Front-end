@@ -7,8 +7,7 @@ const routes = [
   {
     path: "/",
     name: "Login",
-    component: () =>
-      import(/* webpackChunkName: "login" */ "../views/Login.vue"),
+    component: () => import(/* webpackChunkName: "login" */ "../views/Login.vue"),
   },
   {
     path: "/home",
@@ -18,11 +17,10 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "home" */ "../views/Home.vue"),
     meta: {
-      requiereAuth: true,
+      requireAuth: true,
     },
   },
 ];
-
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
@@ -30,7 +28,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.matched.some((record) => record.meta.requiereAuth)) {
+  if (to.matched.some((record) => record.meta.requireAuth)) {
     if (localStorage.getItem("jwt") === null) {
       next({
         path: "/",
