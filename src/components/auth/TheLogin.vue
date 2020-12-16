@@ -76,7 +76,7 @@ export default {
         console.log(response.data.accessToken);
         let token = response.data.accessToken;
         var decoded = jwt.decode(token, {complete: true});
-        console.log(decoded.payload);
+        // console.log(decoded.payload);
         let user = decoded.payload;
 
         localStorage.setItem('jwt', token);
